@@ -86,7 +86,6 @@ public class RegisterationScreen extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
 
                     // register the user in firebase
-
                     fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -108,6 +107,8 @@ public class RegisterationScreen extends AppCompatActivity {
                                 });
 
                                 Toast.makeText(RegisterationScreen.this, "User Created.", Toast.LENGTH_SHORT).show();
+
+                                //due to permissions user data is not stored
                                 userID = fAuth.getCurrentUser().getUid();
                                 DocumentReference documentReference = fStore.collection("users").document(userID);
                                 Map<String,Object> user = new HashMap<>();
@@ -151,7 +152,6 @@ public class RegisterationScreen extends AppCompatActivity {
     }
 
     public boolean isValidPassword(final String password) {
-
         Pattern pattern;
         Matcher matcher;
 
@@ -161,7 +161,6 @@ public class RegisterationScreen extends AppCompatActivity {
         matcher = pattern.matcher(password);
 
         return matcher.matches();
-
     }
 
     @Override

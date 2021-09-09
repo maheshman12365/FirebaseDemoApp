@@ -59,6 +59,7 @@ public class AddNewUserScreen extends AppCompatActivity {
     private void addNewUser(String title, boolean checked) {
         progressBar.setVisibility(View.VISIBLE);
         Query lastQuery = mRef.orderByKey().limitToLast(1);
+
         lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
